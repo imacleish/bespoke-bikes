@@ -1,0 +1,2 @@
+Prices should be fixed point decimals in DB and code, not doubles
+

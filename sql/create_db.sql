@@ -12,6 +12,8 @@ CREATE DATABASE bespoked_bikes
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 	
+\connect bespoked_bikes;
+	
 -- SEQUENCE: public.customer_id_seq
 
 DROP SEQUENCE IF EXISTS public.customer_id_seq CASCADE;
@@ -104,8 +106,8 @@ CREATE TABLE IF NOT EXISTS public.product
     name text COLLATE pg_catalog."default" NOT NULL,
     manufacturer text COLLATE pg_catalog."default" NOT NULL,
     style text COLLATE pg_catalog."default" NOT NULL,
-    purchase_price money NOT NULL,
-    sale_price money NOT NULL,
+    purchase_price double precision NOT NULL,
+    sale_price double precision NOT NULL,
     quantity integer NOT NULL,
     commission double precision NOT NULL,
     CONSTRAINT product_pkey PRIMARY KEY (id)

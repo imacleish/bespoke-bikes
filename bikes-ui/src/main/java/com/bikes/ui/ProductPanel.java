@@ -10,9 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import com.bikes.data.ProductData;
-import com.bikes.data.SalesPersonData;
 import com.bikes.records.Product;
-import com.bikes.records.SalesPerson;
 
 public class ProductPanel extends JPanel {
 	

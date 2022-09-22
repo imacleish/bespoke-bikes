@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public record Discount(
 		
 	int id,
-	String product,
-	LocalDate startDate,
+	int product,
+	LocalDate beginDate,
 	LocalDate endDate,
-	double discount
+	double discountPercent
 		
 ) {}

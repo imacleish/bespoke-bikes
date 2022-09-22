@@ -191,6 +191,43 @@ ALTER TABLE IF EXISTS public.salesperson
 -- Populate tables
 
 
+INSERT INTO public.discount (product, begin_date, end_date, discount_percent)
+VALUES (1, '2022-01-01', '2022-03-31', 0.4);
+	
+	
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (1, 1, 5, '2022-01-02');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (2, 1, 4, '2022-02-15');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (3, 1, 3, '2022-04-11');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (4, 1, 2, '2022-06-12');
+
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (4, 2, 1, '2022-01-01');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (3, 2, 3, '2022-03-15');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (2, 2, 5, '2022-05-11');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (1, 2, 1, '2022-06-12');
+
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (1, 3, 2, '2022-02-02');
+
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (3, 4, 4, '2022-01-01');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (1, 4, 1, '2022-02-15');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (2, 4, 2, '2022-04-11');
+INSERT INTO public.sale (product, salesperson, customer, sale_date)
+VALUES (4, 4, 5, '2022-06-12');
+
+
+
+
 INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
 VALUES ('Christina', 'John', '100 Main Street', '823-555-2983', '2021-07-11');
 
@@ -231,7 +268,7 @@ INSERT INTO public.salesperson (first_name, last_name, address, phone, start_dat
 VALUES ('Raymond', 'Stantz', '200 Peachtree Lane', '222-222-2222', '2021-08-09', NULL, 'The Mayor');
 
 INSERT INTO public.salesperson (first_name, last_name, address, phone, start_date, term_date, manager) 
-VALUES ('Egon', 'Spengler', '300 Peachtree Drive', '333-333-3333', '2020-04-28', '2022-06-06', 'Slimer');
+VALUES ('Egon', 'Spengler', '300 Peachtree Drive', '333-333-3333', '2020-04-28', '2022-05-06', 'Slimer');
 
 INSERT INTO public.salesperson (first_name, last_name, address, phone, start_date, term_date, manager) 
 VALUES ('Winston', 'Zeddemore', '400 Peachtree Parkway', '444-444-4444', '2021-12-31', NULL, 'Marshmallow Man');

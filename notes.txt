@@ -1,2 +1,4 @@
 Prices should be fixed point decimals in DB and code, not doubles
 
+Performance issues with large database sizes
+	In real world I'd expect discount results to be recorded with sales rather than calculated each read

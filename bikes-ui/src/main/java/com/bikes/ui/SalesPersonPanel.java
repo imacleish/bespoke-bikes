@@ -19,7 +19,7 @@ public class SalesPersonPanel extends JPanel {
 
 	public SalesPersonPanel(SalesPersonData spdata) {
 		this.source = spdata;
-		data = spdata.getAllSalesPeople();
+		data = source.getAllSalesPeople();
 
 		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

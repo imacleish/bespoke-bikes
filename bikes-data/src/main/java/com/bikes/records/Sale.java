@@ -2,12 +2,20 @@ package com.bikes.records;
 
 import java.time.LocalDate;
 
-public record Sale(
+public record Sale (
 		
 	int id,
-	String product,
-	String salesperson,
-	String customer,
-	LocalDate salesDate
-		
-) {}
+	int productId,
+	String productName,
+	double productCommission,
+	String customerFirst,
+	String customerLast,
+	String spFirst,
+	String spLast,
+	LocalDate date,
+	double salePrice
+) {
+	
+	
+	
+}

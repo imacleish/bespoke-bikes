@@ -12,7 +12,10 @@ import java.util.Enumeration;
 import java.util.List;
 
 import com.bikes.data.BikeDataSource;
+import com.bikes.records.Customer;
+import com.bikes.records.Discount;
 import com.bikes.records.Product;
+import com.bikes.records.Sale;
 import com.bikes.records.SalesPerson;
 
 public class BikePostgres implements BikeDataSource {
@@ -83,6 +86,89 @@ public class BikePostgres implements BikeDataSource {
 					rs.getDouble("sale_price"),
 					rs.getInt("quantity"),
 					rs.getDouble("commission")));
+			}
+		} catch (SQLException e) {
+		     e.printStackTrace();
+		} 
+		return result;
+	}
+
+	@Override
+	public List<Customer> getCustomers() {
+		List<Customer> result = new ArrayList<>();
+		String QUERY = "SELECT id, first_name, last_name, address, phone, start_date FROM customer";
+		
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(QUERY)) {
+			while (rs.next()) {
+				result.add(new Customer(
+					rs.getInt("id"),
+					rs.getString("first_name"),
+					rs.getString("last_name"),
+					rs.getString("address"),
+					rs.getString("phone"),
+					rs.getObject("start_date", LocalDate.class)));
+			}
+		} catch (SQLException e) {
+		     e.printStackTrace();
+		} 
+		return result;
+	}
+
+	@Override
+	public List<Discount> getDiscounts() {
+		List<Discount> result = new ArrayList<>();
+		String QUERY = "SELECT id, product, begin_date, end_date, discount_percent FROM discount";
+		
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(QUERY)) {
+			while (rs.next()) {
+				result.add(new Discount(
+					rs.getInt("id"),
+					rs.getInt("product"),
+					rs.getObject("begin_date", LocalDate.class),
+					rs.getObject("end_date", LocalDate.class),
+					rs.getDouble("discount_percent")));
+			}
+		} catch (SQLException e) {
+		     e.printStackTrace();
+		} 
+		return result;
+	}
+
+	@Override
+	public List<Sale> getSales() {
+		List<Sale> result = new ArrayList<>();
+		String QUERY = """
+SELECT sale.id as sale_id, 
+	product.id as product_id, 
+	product.name as product_name, 
+	product.commission as product_commission, 
+	customer.first_name as customer_first_name,
+	customer.last_name as customer_last_name, 
+	salesperson.first_name as salesperson_first_name,
+	salesperson.last_name as salesperson_last_name, 
+	sale.sale_date as sale_date, 
+	product.sale_price as sale_price
+FROM sale
+INNER JOIN product ON (sale.product=product.id)
+INNER JOIN customer ON (sale.customer=customer.id)
+INNER JOIN salesperson ON (sale.salesperson=salesperson.id)
+		""";
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(QUERY)) {
+			while (rs.next()) {
+				result.add(new Sale(
+					rs.getInt("sale_id"),
+					rs.getInt("product_id"),
+					rs.getString("product_name"),
+					rs.getDouble("product_commission"),
+					rs.getString("customer_first_name"),
+					rs.getString("customer_last_name"),
+					rs.getString("salesperson_first_name"),
+					rs.getString("salesperson_last_name"),
+					rs.getObject("sale_date", LocalDate.class),
+					rs.getDouble("sale_price")));
 			}
 		} catch (SQLException e) {
 		     e.printStackTrace();

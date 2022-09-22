@@ -189,6 +189,40 @@ ALTER TABLE IF EXISTS public.salesperson
     OWNER to postgres;
 	
 -- Populate tables
+
+
+INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
+VALUES ('Christina', 'John', '100 Main Street', '823-555-2983', '2021-07-11');
+
+INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
+VALUES ('Philippa', 'Price', '200 North Street', '100-555-9836', '2021-03-20');
+
+INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
+VALUES ('Milburn', 'Beckett', '300 South Street', '953-555-1820', '2022-02-07');
+
+INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
+VALUES ('Christa', 'Rexanne', '400 East Street', '519-555-8921', '2020-11-29');
+
+INSERT INTO public.customer (first_name, last_name, address, phone, start_date)
+VALUES ('Zeph', 'Tessie', '500 West Street', '843-555-2348', '2022-05-01');
+
+
+
+
+INSERT INTO public.product (name, manufacturer, style, purchase_price, sale_price, quantity, commission)
+VALUES ('CYBIC 2022 Mountain Bike', 'CYBIC', 'Mountain', 69.99, 109.99, 15, 0.2);
+
+INSERT INTO public.product (name, manufacturer, style, purchase_price, sale_price, quantity, commission)
+VALUES ('Legion Freestyle', 'Mongoose', 'BMX', 199.99, 329.99, 8, 0.15);
+
+INSERT INTO public.product (name, manufacturer, style, purchase_price, sale_price, quantity, commission)
+VALUES ('Wayfarer', 'Schwinn', 'Cruiser', 429.99, 739.99, 5, 0.1);
+
+INSERT INTO public.product (name, manufacturer, style, purchase_price, sale_price, quantity, commission)
+VALUES ('High Timber', 'Schwinn', 'Mountain', 129.99, 279.99, 12, 0.25);
+
+
+
 	
 INSERT INTO public.salesperson (first_name, last_name, address, phone, start_date, term_date, manager) 
 VALUES ('Peter', 'Venkman', '100 Peachtree Street', '111-111-1111', '2022-01-15', NULL, 'Gozer');

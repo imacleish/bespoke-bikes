@@ -68,8 +68,26 @@ public class BikePostgres implements BikeDataSource {
 
 	@Override
 	public List<Product> getProducts() {
+		List<Product> result = new ArrayList<>();
+		String QUERY = "SELECT id, name, manufacturer, style, purchase_price, sale_price, quantity, commission FROM product";
 		
-		return null;
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(QUERY)) {
+			while (rs.next()) {
+				result.add(new Product(
+					rs.getInt("id"),
+					rs.getString("name"),
+					rs.getString("manufacturer"),
+					rs.getString("style"),
+					rs.getDouble("purchase_price"),
+					rs.getDouble("sale_price"),
+					rs.getInt("quantity"),
+					rs.getDouble("commission")));
+			}
+		} catch (SQLException e) {
+		     e.printStackTrace();
+		} 
+		return result;
 	}
 
 }

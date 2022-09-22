@@ -40,8 +40,6 @@ public class SaleData {
 		double finalPrice;
 		if (matchingDiscount != null) {
 			finalPrice = sale.salePrice() * (1 - matchingDiscount.discountPercent());
-			System.out.println("SalePrice: " + sale.salePrice());
-			System.out.println("FinalPrice: " + finalPrice);
 		} else {
 			finalPrice = sale.salePrice();
 		}

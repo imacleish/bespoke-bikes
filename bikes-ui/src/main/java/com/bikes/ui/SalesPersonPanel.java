@@ -1,5 +1,7 @@
 package com.bikes.ui;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -7,6 +9,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.bikes.data.SalesPersonData;
@@ -14,8 +18,12 @@ import com.bikes.records.SalesPerson;
 
 public class SalesPersonPanel extends JPanel {
 	
+	private final List<String> columns = List.of("First Name", "Last Name", "Address", "Phone", 
+			"Start Date", "Termination Date", "Manager");
+	
 	private SalesPersonData source;
 	private List<SalesPerson> data;
+	private JTable table;
 
 	public SalesPersonPanel(SalesPersonData spdata) {
 		this.source = spdata;
@@ -24,15 +32,14 @@ public class SalesPersonPanel extends JPanel {
 		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		JTable table = new JTable(new SalesPersonModel());
+		// Table
+		SalesPersonModel model = new SalesPersonModel();
+		table = new JTable(model);
 		JScrollPane scroll = new JScrollPane(table);
 		this.add(scroll);
 	}
 	
 	private class SalesPersonModel extends AbstractTableModel {
-		
-		private final List<String> columns = List.of("First Name", "Last Name", "Address", "Phone", 
-				"Start Date", "Termination Date", "Manager");
 		
 		@Override
 		public int getRowCount() {

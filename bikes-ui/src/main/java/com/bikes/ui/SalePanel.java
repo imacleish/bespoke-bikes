@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,7 +41,7 @@ public class SalePanel extends JPanel {
 		
 		// Top label with filter date pickers
 		JPanel filterPanel = new JPanel();
-		filterPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		filterPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.LINE_AXIS));
 		this.add(filterPanel);
 		filterPanel.add(new JLabel("Filter by date (format YYYY-MM-DD) from "));
@@ -52,16 +53,18 @@ public class SalePanel extends JPanel {
 		JButton filterButton = new JButton("Filter");
 		filterButton.addActionListener(event -> sorter.sort());
 		filterPanel.add(filterButton);
-		
+		filterPanel.add(Box.createHorizontalGlue());
 		
 		// Table
 		ProductModel model = new ProductModel();
 		sorter = new TableRowSorter<>(model);
 		sorter.setRowFilter(new DateFilter());
-		JTable table = new JTable(new ProductModel());
+		JTable table = new JTable(model);
 		table.setRowSorter(sorter);
 		JScrollPane scroll = new JScrollPane(table);
 		this.add(scroll);
+		
+		// Bottom panel with fields to add sale
 	}
 
 

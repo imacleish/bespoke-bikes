@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import com.bikes.data.SalesPerson;
+import com.bikes.data.BikeDataSource;
+import com.bikes.records.Product;
+import com.bikes.records.SalesPerson;
 
-public class BikePostgres implements BikeDatabase {
+public class BikePostgres implements BikeDataSource {
 	
 	private static final String DB_URL = "jdbc:postgresql://localhost:5432/bespoked_bikes";
 	private static final String USER = "postgres";
@@ -41,7 +43,6 @@ public class BikePostgres implements BikeDatabase {
 		}
 	}
 
-	@Override
 	public List<SalesPerson> getSalesPeople() {
 		List<SalesPerson> result = new ArrayList<>();
 		String QUERY = "SELECT id, first_name, last_name, address, phone, start_date, term_date, manager FROM salesperson";
@@ -63,6 +64,12 @@ public class BikePostgres implements BikeDatabase {
 		     e.printStackTrace();
 		} 
 		return result;
+	}
+
+	@Override
+	public List<Product> getProducts() {
+		
+		return null;
 	}
 
 }

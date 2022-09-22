@@ -4,4 +4,12 @@ plugins {
 
 dependencies {
 	implementation project(':bikes-data')
+	implementation project(':bikes-postgres')
 }
+
+
+
+application {
+    mainClass = 'com.bikes.ui.Main'
+}
+

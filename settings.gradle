@@ -1,2 +1,3 @@
 include 'bikes-data'
+include 'bikes-postgres'
 include 'bikes-ui'

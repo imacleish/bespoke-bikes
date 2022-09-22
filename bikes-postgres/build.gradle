@@ -1,0 +1,11 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	implementation project(':bikes-data')
+
+	implementation 'org.postgresql:postgresql:42.5.0'
+	
+	testImplementation "junit:junit:4.13"
+}

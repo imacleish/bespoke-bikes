@@ -1,4 +1,4 @@
-package com.bikes.data;
+package com.bikes.records;
 
 public record Product(	
 	int id,

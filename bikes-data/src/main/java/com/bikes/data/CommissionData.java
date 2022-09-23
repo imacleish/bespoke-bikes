@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.bikes.records.FinalSale;
 import com.bikes.records.Quarter;
-import com.bikes.records.Sale;
 import com.bikes.records.SalesPerson;
 import com.bikes.records.TotalCommission;
 

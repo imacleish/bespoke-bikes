@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.bikes.records.Discount;
 import com.bikes.records.FinalSale;
+import com.bikes.records.InsertSale;
+import com.bikes.records.Name;
 import com.bikes.records.Sale;
 
 public class SaleData {
@@ -47,5 +49,27 @@ public class SaleData {
 		// calculate commission from final price and build final Sale
 		double commission = finalPrice * sale.productCommission();
 		return new FinalSale(sale, finalPrice, commission);
+	}
+	
+	public List<Name> getSalespersonNames() {
+		return source.getSalesPeople().stream()
+				.map(sp -> new Name(sp.id(), sp.firstName(), sp.lastName()))
+				.toList();
+	}
+	
+	public List<Name> getCustomerNames() {
+		return source.getCustomers().stream()
+				.map(cust -> new Name(cust.id(), cust.firstName(), cust.lastName()))
+				.toList();
+	}
+	
+	public List<Name> getProductNames() {
+		return source.getProducts().stream()
+				.map(p -> new Name(p.id(), p.name(), ""))
+				.toList();
+	}
+
+	public void createSale(InsertSale sale) {
+		source.insertSale(sale);
 	}
 }

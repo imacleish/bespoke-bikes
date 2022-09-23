@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bikes.records.Customer;
 import com.bikes.records.Discount;
+import com.bikes.records.InsertSale;
 import com.bikes.records.Product;
 import com.bikes.records.Sale;
 import com.bikes.records.SalesPerson;
@@ -22,6 +24,11 @@ public class BikePostgresTest {
 	@BeforeClass
 	public static void init() {
 		conn = new BikePostgres();
+	}
+	
+	@AfterClass
+	public static void close() {
+		conn.close();
 	}
 	
 	@Test
@@ -86,7 +93,20 @@ public class BikePostgresTest {
 	@Test
 	public void testGetSales() {
 		List<Sale> result = conn.getSales();
-		assertEquals(13, result.size());
+		Sale d = result.get(0);
+		assertEquals(1, d.id());
+		assertEquals("Zeph", d.customerFirst());
+	}
+	
+	@Test
+	public void testInsertSale() {
+		int preSize = conn.getSales().size();
+		
+		InsertSale sale = new InsertSale(3,3,3, LocalDate.of(2022, 3, 3));
+		conn.insertSale(sale);
+		
+		int postSize = conn.getSales().size();
+		assertEquals(preSize + 1, postSize);
 	}
 
 }

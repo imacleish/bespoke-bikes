@@ -3,6 +3,7 @@ package com.bikes.db;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,6 +15,7 @@ import java.util.List;
 import com.bikes.data.BikeDataSource;
 import com.bikes.records.Customer;
 import com.bikes.records.Discount;
+import com.bikes.records.InsertSale;
 import com.bikes.records.Product;
 import com.bikes.records.Sale;
 import com.bikes.records.SalesPerson;
@@ -174,6 +176,21 @@ INNER JOIN salesperson ON (sale.salesperson=salesperson.id)
 		     e.printStackTrace();
 		} 
 		return result;
+	}
+
+	@Override
+	public void insertSale(InsertSale sale) {
+		String QUERY = "INSERT INTO sale (product, salesperson, customer, sale_date) VALUES (?, ?, ?, ?);";
+		try(PreparedStatement stmt = conn.prepareStatement(QUERY)) {
+			stmt.setInt(1, sale.productID());
+			stmt.setInt(2, sale.salespersonID());
+			stmt.setInt(3, sale.customerID());
+			stmt.setObject(4, sale.date());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
 	}
 
 }
